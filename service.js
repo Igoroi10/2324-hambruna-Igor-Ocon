@@ -55,9 +55,19 @@ const fiberlessDonut = (filteredDonuts) =>{
 
    console.log("El donut con menos fibra es " + fibreName)
 }
+
+const donutsAndCalories = (filteredDonuts) =>{
+    console.log("Listado de donuts y sus calorias");
+    filteredDonuts.forEach(el => {
+        console.log("Donut: " + el.name + " Calorias: " + el.nutrition_facts.nutrition.calories);
+    }) 
+    
+
+}
 export{
     sugarDonut,
     ironDonut,
     proteineDonut,
     fiberlessDonut,
+    donutsAndCalories,
 }
