@@ -79,8 +79,32 @@ const donutCalorieAverage = (filteredDonuts) => {
 
 const saturatedFatTotal = (filteredDonuts) => {
     let fatTotal = 0;
-    filteredDonuts.map(el => fatTotal += parseInt(el.nutrition_facts.nutrition.fat.fat_type.saturated));
+    filteredDonuts.map(el => fatTotal += parseFloat(el.nutrition_facts.nutrition.fat.fat_type.saturated));
     console.log("El total de gramos de grasas saturadas de todos los donuts es: " + fatTotal);
+}
+
+const vitamineAverage = (filteredDonuts) => {
+    const eachType = [...filteredDonuts[0].nutrition_facts.nutrition.vitamines];
+    eachType.map(el => {
+        el.percent = parseFloat(el.percent);
+        filteredDonuts.forEach(element => {
+            element.nutrition_facts.nutrition.vitamines.map(el1 =>{
+                if(el1.type === el.type){
+                    el.percent += parseFloat(el1.percent);
+                }
+            })
+        })
+    })
+
+    console.log("Typos y porcentaje de cada vitamina:");
+
+    eachType.map(el => {
+        console.log("Tipo: " + el.type);
+        console.log("Porcentaje promedio: " + (el.percent)/eachType.length);
+    })
+
+
+   
 }
 
 export{
@@ -92,5 +116,6 @@ export{
     donutsAndCarbohydrates,
     donutCalorieAverage,
     saturatedFatTotal,
+    vitamineAverage,
 
 }
