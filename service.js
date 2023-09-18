@@ -70,6 +70,12 @@ const donutsAndCarbohydrates = (filteredDonuts) =>{
     }) 
 }
 
+const donutCalorieAverage = (filteredDonuts) => {
+    let calorieTotal = 0;
+    filteredDonuts.map(el => calorieTotal += el.nutrition_facts.nutrition.calories)
+    const calorieAverage = calorieTotal/filteredDonuts.length
+    console.log("El promedio de calorias es de " + calorieAverage)
+}
 
 export{
     sugarDonut,
@@ -77,5 +83,6 @@ export{
     proteineDonut,
     fiberlessDonut,
     donutsAndCalories,
-    donutsAndCarbohydrates
+    donutsAndCarbohydrates,
+    donutCalorieAverage,
 }
