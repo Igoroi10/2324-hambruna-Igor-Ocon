@@ -61,13 +61,21 @@ const donutsAndCalories = (filteredDonuts) =>{
     filteredDonuts.forEach(el => {
         console.log("Donut: " + el.name + " Calorias: " + el.nutrition_facts.nutrition.calories);
     }) 
-    
-
 }
+
+const donutsAndCarbohydrates = (filteredDonuts) =>{
+    console.log("Listado de donuts y sus carbohidratos");
+    filteredDonuts.forEach(el => {
+        console.log("Donut: " + el.name + " Carbohidratos: " + el.nutrition_facts.nutrition.carbohydrate.daily_value);
+    }) 
+}
+
+
 export{
     sugarDonut,
     ironDonut,
     proteineDonut,
     fiberlessDonut,
     donutsAndCalories,
+    donutsAndCarbohydrates
 }
