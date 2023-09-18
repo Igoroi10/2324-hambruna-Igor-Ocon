@@ -42,8 +42,22 @@ const proteineDonut = (filteredDonuts) =>{
    console.log("El donut con más proteina es " + proteineName);
 }
 
+const fiberlessDonut = (filteredDonuts) =>{
+    let lessFibre = 1000;
+    let fibreName = "";
+    filteredDonuts.forEach(el =>{
+            if(parseInt(el.nutrition_facts.nutrition.carbohydrate.carbs_detail.type.fibre) < lessFibre){
+                lessFibre = parseInt(el.nutrition_facts.nutrition.carbohydrate.carbs_detail.type.fibre);
+                fibreName = el.name;
+            }
+        }
+    )
+
+   console.log("El donut con menos fibra es " + fibreName)
+}
 export{
     sugarDonut,
     ironDonut,
     proteineDonut,
+    fiberlessDonut,
 }
