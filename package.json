@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "dependencies": {
     "cross-fetch": "^4.0.0",
     "node-fetch": "^2.7.0"
