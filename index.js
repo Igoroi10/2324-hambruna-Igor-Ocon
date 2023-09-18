@@ -1,6 +1,6 @@
 // const fetch = require('node-fetch');
 // import fetch from 'cross-fetch';
-import { sugarDonut, ironDonut, proteineDonut, fiberlessDonut, donutsAndCalories, donutsAndCarbohydrates, donutCalorieAverage,saturatedFatTotal, vitamineAverage } from './service.js';
+import { sugarDonut, ironDonut, proteineDonut, fiberlessDonut, donutsAndCalories, donutsAndCarbohydrates, donutCalorieAverage,saturatedFatTotal, vitamineAverage, donutsButters } from './service.js';
 
 
 const getDonuts = async() => {
@@ -29,6 +29,9 @@ const fetchDonuts = async() => {
         donutCalorieAverage(filteredDonuts);
         saturatedFatTotal(filteredDonuts);
         vitamineAverage(filteredDonuts);
+        console.log("-------------------------------------")
+        console.log("-------------Conjuro 3--------------")
+        donutsButters(filteredDonuts);
 
 
     }

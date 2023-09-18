@@ -102,9 +102,16 @@ const vitamineAverage = (filteredDonuts) => {
         console.log("Tipo: " + el.type);
         console.log("Porcentaje promedio: " + (el.percent)/eachType.length);
     })
+}
 
-
-   
+const donutsButters = (filteredDonuts) => {
+    filteredDonuts.forEach( el => {
+        console.log("Lista de masas posibles de " + el.name + ":");
+        el.batters.batter.forEach(element => {
+            console.log("Type: " + element.type);
+        })
+        console.log("------------------------------")
+    })
 }
 
 export{
@@ -117,5 +124,7 @@ export{
     donutCalorieAverage,
     saturatedFatTotal,
     vitamineAverage,
+    donutsButters,
+
 
 }
