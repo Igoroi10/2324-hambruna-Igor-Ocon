@@ -77,6 +77,12 @@ const donutCalorieAverage = (filteredDonuts) => {
     console.log("El promedio de calorias es de " + calorieAverage)
 }
 
+const saturatedFatTotal = (filteredDonuts) => {
+    let fatTotal = 0;
+    filteredDonuts.map(el => fatTotal += parseInt(el.nutrition_facts.nutrition.fat.fat_type.saturated));
+    console.log("El total de gramos de grasas saturadas de todos los donuts es: " + fatTotal);
+}
+
 export{
     sugarDonut,
     ironDonut,
@@ -85,4 +91,6 @@ export{
     donutsAndCalories,
     donutsAndCarbohydrates,
     donutCalorieAverage,
+    saturatedFatTotal,
+
 }
