@@ -27,10 +27,23 @@ const ironDonut = (filteredDonuts) =>{
     console.log("El donut con más hierro es " + mostIronName);
 }
 
+const proteineDonut = (filteredDonuts) =>{
+    let mostProteine = 0;
+    let proteineName = ""
+    filteredDonuts.forEach(el =>{
+        if(parseInt(el.nutrition_facts.nutrition.proteine) > mostProteine){
+            mostProteine = parseInt(el.nutrition_facts.nutrition.proteine);
+            proteineName = el.name;
+        }
 
+        }
+    )
+
+   console.log("El donut con más proteina es " + proteineName);
+}
 
 export{
     sugarDonut,
     ironDonut,
-
+    proteineDonut,
 }

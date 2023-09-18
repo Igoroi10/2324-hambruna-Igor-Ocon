@@ -1,6 +1,6 @@
 // const fetch = require('node-fetch');
 // import fetch from 'cross-fetch';
-import { sugarDonut, ironDonut } from './service.js';
+import { sugarDonut, ironDonut, proteineDonut } from './service.js';
 
 
 const getDonuts = async() => {
@@ -18,6 +18,7 @@ const fetchDonuts = async() => {
 
         sugarDonut(filteredDonuts);
         ironDonut(filteredDonuts);
+        proteineDonut(filteredDonuts);
 
     }
     catch(error){ 
