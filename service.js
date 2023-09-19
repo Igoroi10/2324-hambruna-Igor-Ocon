@@ -167,6 +167,18 @@ const transFatModify = (filteredDonuts) => {
     console.log("------------------------------")
 }
 
+const carbohydrateModify = (filteredDonuts) => {
+    console.log("Los donuts con más de 50 de azúcar tienen 42g de carbohidratos ahora");
+    filteredDonuts.map(el => {
+        if(parseInt(el.nutrition_facts.nutrition.carbohydrate.carbs_detail.type.sugars) > 50)
+        el.nutrition_facts.nutrition.carbohydrate.carbs_detail.amount = "42g"
+
+        console.log(el.name + ": cantidad de azúcar: " + el.nutrition_facts.nutrition.carbohydrate.carbs_detail.type.sugars + " cantidad de carbohidratos: " + el.nutrition_facts.nutrition.carbohydrate.carbs_detail.amount)
+    })
+    console.log("------------------------------")
+    console.log("------------------------------")
+}
+
 export{
     sugarDonut,
     ironDonut,
@@ -180,6 +192,7 @@ export{
     donutsButters,
     donutsToppings,
     howManyDonutWeCanBuy,
-    transFatModify
+    transFatModify,
+    carbohydrateModify,
 
 }
