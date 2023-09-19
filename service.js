@@ -179,6 +179,17 @@ const carbohydrateModify = (filteredDonuts) => {
     console.log("------------------------------")
 }
 
+
+const modifyAllCarbohydratesDailyValue = (filteredDonuts) => {
+    console.log("Modificamos toda la ingesta diaria de carbohidratos en los donuts al 53%")
+    filteredDonuts.map(el => {
+        el.nutrition_facts.nutrition.carbohydrate.daily_value = "53%";
+        console.log(el.name + ": ingesta diaria de carbohidratos: " + el.nutrition_facts.nutrition.carbohydrate.daily_value);
+    })
+    console.log("------------------------------")
+    console.log("------------------------------")
+}
+
 export{
     sugarDonut,
     ironDonut,
@@ -194,5 +205,6 @@ export{
     howManyDonutWeCanBuy,
     transFatModify,
     carbohydrateModify,
+    modifyAllCarbohydratesDailyValue,
 
 }

@@ -1,6 +1,6 @@
 // const fetch = require('node-fetch');
 import fetch from 'cross-fetch';
-import { sugarDonut, ironDonut, proteineDonut, fiberlessDonut, donutsAndCalories, donutsAndCarbohydrates, donutCalorieAverage,saturatedFatTotal, vitamineAverage, donutsButters, donutsToppings, howManyDonutWeCanBuy, transFatModify, carbohydrateModify } from './service.js';
+import { sugarDonut, ironDonut, proteineDonut, fiberlessDonut, donutsAndCalories, donutsAndCarbohydrates, donutCalorieAverage,saturatedFatTotal, vitamineAverage, donutsButters, donutsToppings, howManyDonutWeCanBuy, transFatModify, carbohydrateModify, modifyAllCarbohydratesDailyValue } from './service.js';
 
 
 const getDonuts = async() => {
@@ -40,6 +40,8 @@ const fetchDonuts = async() => {
         console.log("-------------Conjuro 5--------------");
         transFatModify(filteredDonuts);
         carbohydrateModify(filteredDonuts);
+        // fusionAddNitricine(filteredDonuts);
+        modifyAllCarbohydratesDailyValue(filteredDonuts);
         console.log("-------------------------------------")
 
     }
