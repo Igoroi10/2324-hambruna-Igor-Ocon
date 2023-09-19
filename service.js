@@ -9,6 +9,8 @@ const sugarDonut = (filteredDonuts) =>{
 
    const mostSugaredDonut = filteredDonuts.filter(el => parseInt(el.nutrition_facts.nutrition.carbohydrate.carbs_detail.type.sugars) === mostSugar)
    console.log("El donut con más azucar es " + mostSugaredDonut[0].name)
+   console.log("------------------------------")        
+   console.log("------------------------------")
 }
 
 const ironDonut = (filteredDonuts) =>{
@@ -25,6 +27,8 @@ const ironDonut = (filteredDonuts) =>{
     });
 
     console.log("El donut con más hierro es " + mostIronName);
+    console.log("------------------------------")
+    console.log("------------------------------")
 }
 
 const proteineDonut = (filteredDonuts) =>{
@@ -40,6 +44,8 @@ const proteineDonut = (filteredDonuts) =>{
     )
 
    console.log("El donut con más proteina es " + proteineName);
+   console.log("------------------------------")
+   console.log("------------------------------")
 }
 
 const fiberlessDonut = (filteredDonuts) =>{
@@ -54,6 +60,8 @@ const fiberlessDonut = (filteredDonuts) =>{
     )
 
    console.log("El donut con menos fibra es " + fibreName)
+   console.log("------------------------------")
+   console.log("------------------------------")
 }
 
 const donutsAndCalories = (filteredDonuts) =>{
@@ -61,6 +69,8 @@ const donutsAndCalories = (filteredDonuts) =>{
     filteredDonuts.forEach(el => {
         console.log("Donut: " + el.name + " Calorias: " + el.nutrition_facts.nutrition.calories);
     }) 
+    console.log("------------------------------")
+    console.log("------------------------------")
 }
 
 const donutsAndCarbohydrates = (filteredDonuts) =>{
@@ -68,6 +78,8 @@ const donutsAndCarbohydrates = (filteredDonuts) =>{
     filteredDonuts.forEach(el => {
         console.log("Donut: " + el.name + " Carbohidratos: " + el.nutrition_facts.nutrition.carbohydrate.daily_value);
     }) 
+    console.log("------------------------------")
+    console.log("------------------------------")
 }
 
 const donutCalorieAverage = (filteredDonuts) => {
@@ -75,12 +87,16 @@ const donutCalorieAverage = (filteredDonuts) => {
     filteredDonuts.map(el => calorieTotal += el.nutrition_facts.nutrition.calories)
     const calorieAverage = calorieTotal/filteredDonuts.length
     console.log("El promedio de calorias es de " + calorieAverage)
+    console.log("------------------------------")
+    console.log("------------------------------")
 }
 
 const saturatedFatTotal = (filteredDonuts) => {
     let fatTotal = 0;
     filteredDonuts.map(el => fatTotal += parseFloat(el.nutrition_facts.nutrition.fat.fat_type.saturated));
     console.log("El total de gramos de grasas saturadas de todos los donuts es: " + fatTotal);
+    console.log("------------------------------")
+    console.log("------------------------------")
 }
 
 const vitamineAverage = (filteredDonuts) => {
@@ -102,6 +118,9 @@ const vitamineAverage = (filteredDonuts) => {
         console.log("Tipo: " + el.type);
         console.log("Porcentaje promedio: " + (el.percent)/eachType.length);
     })
+
+    console.log("------------------------------")
+    console.log("------------------------------")
 }
 
 const donutsButters = (filteredDonuts) => {
@@ -112,6 +131,8 @@ const donutsButters = (filteredDonuts) => {
         })
         console.log("------------------------------")
     })
+    console.log("------------------------------")
+    console.log("------------------------------")
 }
 
 const donutsToppings = (filteredDonuts) => {
@@ -122,12 +143,28 @@ const donutsToppings = (filteredDonuts) => {
         })
         console.log("------------------------------")
     })
+    console.log("------------------------------")
+    console.log("------------------------------")
 }
 
 const howManyDonutWeCanBuy =  (filteredDonuts, num) =>{
     filteredDonuts.forEach(el => {
         console.log("Podemos comprar una cantidad de " + parseInt(num/el.ppu) + " donuts tipo " + el.name + " y sobrando " + parseFloat(num%el.ppu).toFixed(2) + " monedas")
     })
+    console.log("------------------------------")
+    console.log("------------------------------")
+}
+
+const transFatModify = (filteredDonuts) => {
+    console.log("Los donuts con más de 12% de colesterol tienen 3.2g de grasas trans ahora");
+    filteredDonuts.map(el => {
+        if(parseInt(el.nutrition_facts.nutrition.cholesterol.daily_value) > 12)
+            el.nutrition_facts.nutrition.fat.fat_type.trans = "3.2g"
+
+        console.log(el.name + ": cantidad de colesterol: " + el.nutrition_facts.nutrition.cholesterol.daily_value + " cantidad de grasas trans: " + el.nutrition_facts.nutrition.fat.fat_type.trans)
+    })
+    console.log("------------------------------")
+    console.log("------------------------------")
 }
 
 export{
@@ -143,5 +180,6 @@ export{
     donutsButters,
     donutsToppings,
     howManyDonutWeCanBuy,
+    transFatModify
 
 }
