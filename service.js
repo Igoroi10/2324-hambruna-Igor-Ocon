@@ -1,246 +1,58 @@
+import fetch from 'cross-fetch'; // Comentar en caso de error de fetch
+import { sugarDonut,ironDonut, proteineDonut, fiberlessDonut } from "./conjure1.js";
+import { donutsAndCalories, donutsAndCarbohydrates, donutCalorieAverage, saturatedFatTotal, vitamineAverage } from "./conjure2.js";
+import { donutsButters, donutsToppings } from "./conjure3.js";
+import { howManyDonutWeCanBuy } from "./conjure4.js";
+import {transFatModify, carbohydrateModify, fusionAddNitricine, modifyAllCarbohydratesDailyValue, addAlergen} from "./conjure5.js"
 
-const sugarDonut = (filteredDonuts) =>{
-    let mostSugar = 0;
-    filteredDonuts.forEach(el =>{
-        if(parseInt(el.nutrition_facts.nutrition.carbohydrate.carbs_detail.type.sugars) > mostSugar)
-        mostSugar = parseInt(el.nutrition_facts.nutrition.carbohydrate.carbs_detail.type.sugars);
-        }
-    )
-
-   const mostSugaredDonut = filteredDonuts.filter(el => parseInt(el.nutrition_facts.nutrition.carbohydrate.carbs_detail.type.sugars) === mostSugar)
-   console.log("El donut con más azucar es " + mostSugaredDonut[0].name)
-   console.log("------------------------------")        
-   console.log("------------------------------")
-}
-
-const ironDonut = (filteredDonuts) =>{
-    let mostIron = 0;
-    let mostIronName = "";
-    filteredDonuts.map(el => {
-        el.nutrition_facts.nutrition.vitamines.forEach(element => {
-            if(element.type === "Iron" && parseInt(element.percent) > mostIron){
-                mostIron = parseInt(element.percent);
-                mostIronName = el.name;
-            }
-
-        })
-    });
-
-    console.log("El donut con más hierro es " + mostIronName);
-    console.log("------------------------------")
-    console.log("------------------------------")
-}
-
-const proteineDonut = (filteredDonuts) =>{
-    let mostProteine = 0;
-    let proteineName = ""
-    filteredDonuts.forEach(el =>{
-        if(parseInt(el.nutrition_facts.nutrition.proteine) > mostProteine){
-            mostProteine = parseInt(el.nutrition_facts.nutrition.proteine);
-            proteineName = el.name;
-        }
-
-        }
-    )
-
-   console.log("El donut con más proteina es " + proteineName);
-   console.log("------------------------------")
-   console.log("------------------------------")
-}
-
-const fiberlessDonut = (filteredDonuts) =>{
-    let lessFibre = 1000;
-    let fibreName = "";
-    filteredDonuts.forEach(el =>{
-            if(parseInt(el.nutrition_facts.nutrition.carbohydrate.carbs_detail.type.fibre) < lessFibre){
-                lessFibre = parseInt(el.nutrition_facts.nutrition.carbohydrate.carbs_detail.type.fibre);
-                fibreName = el.name;
-            }
-        }
-    )
-
-   console.log("El donut con menos fibra es " + fibreName)
-   console.log("------------------------------")
-   console.log("------------------------------")
-}
-
-const donutsAndCalories = (filteredDonuts) =>{
-    console.log("Listado de donuts y sus calorias");
-    filteredDonuts.forEach(el => {
-        console.log("Donut: " + el.name + " Calorias: " + el.nutrition_facts.nutrition.calories);
-    }) 
-    console.log("------------------------------")
-    console.log("------------------------------")
-}
-
-const donutsAndCarbohydrates = (filteredDonuts) =>{
-    console.log("Listado de donuts y sus carbohidratos");
-    filteredDonuts.forEach(el => {
-        console.log("Donut: " + el.name + " Carbohidratos: " + el.nutrition_facts.nutrition.carbohydrate.daily_value);
-    }) 
-    console.log("------------------------------")
-    console.log("------------------------------")
-}
-
-const donutCalorieAverage = (filteredDonuts) => {
-    let calorieTotal = 0;
-    filteredDonuts.map(el => calorieTotal += el.nutrition_facts.nutrition.calories)
-    const calorieAverage = calorieTotal/filteredDonuts.length
-    console.log("El promedio de calorias es de " + calorieAverage)
-    console.log("------------------------------")
-    console.log("------------------------------")
-}
-
-const saturatedFatTotal = (filteredDonuts) => {
-    let fatTotal = 0;
-    filteredDonuts.map(el => fatTotal += parseFloat(el.nutrition_facts.nutrition.fat.fat_type.saturated));
-    console.log("El total de gramos de grasas saturadas de todos los donuts es: " + fatTotal);
-    console.log("------------------------------")
-    console.log("------------------------------")
-}
-
-const vitamineAverage = (filteredDonuts) => {
-    const eachType = [...filteredDonuts[0].nutrition_facts.nutrition.vitamines];
-    eachType.map(el => {
-        el.percent = parseFloat(el.percent);
-        filteredDonuts.forEach(element => {
-            element.nutrition_facts.nutrition.vitamines.map(el1 =>{
-                if(el1.type === el.type){
-                    el.percent += parseFloat(el1.percent);
-                }
-            })
-        })
-    })
-
-    console.log("Typos y porcentaje de cada vitamina:");
-
-    eachType.map(el => {
-        console.log("Tipo: " + el.type);
-        console.log("Porcentaje promedio: " + (el.percent)/eachType.length);
-    })
-
-    console.log("------------------------------")
-    console.log("------------------------------")
-}
-
-const donutsButters = (filteredDonuts) => {
-    filteredDonuts.forEach( el => {
-        console.log("Lista de masas posibles de " + el.name + ":");
-        el.batters.batter.forEach(element => {
-            console.log(element.type);
-        })
-        console.log("------------------------------")
-    })
-    console.log("------------------------------")
-    console.log("------------------------------")
-}
-
-const donutsToppings = (filteredDonuts) => {
-    filteredDonuts.forEach( el => {
-        console.log("Lista de toppings posibles de " + el.name + ":");
-        el.topping.forEach(element => {
-            console.log( element.type);
-        })
-        console.log("------------------------------")
-    })
-    console.log("------------------------------")
-    console.log("------------------------------")
-}
-
-const howManyDonutWeCanBuy =  (filteredDonuts, num) =>{
-    filteredDonuts.forEach(el => {
-        console.log("Podemos comprar una cantidad de " + parseInt(num/el.ppu) + " donuts tipo " + el.name + " y sobrando " + parseFloat(num%el.ppu).toFixed(2) + " monedas")
-    })
-    console.log("------------------------------")
-    console.log("------------------------------")
-}
-
-const transFatModify = (filteredDonuts) => {
-    console.log("Los donuts con más de 12% de colesterol tienen 3.2g de grasas trans ahora");
-    filteredDonuts.map(el => {
-        if(parseInt(el.nutrition_facts.nutrition.cholesterol.daily_value) > 12)
-            el.nutrition_facts.nutrition.fat.fat_type.trans = "3.2g"
-
-        console.log(el.name + ": cantidad de colesterol: " + el.nutrition_facts.nutrition.cholesterol.daily_value + " cantidad de grasas trans: " + el.nutrition_facts.nutrition.fat.fat_type.trans)
-    })
-    console.log("------------------------------")
-    console.log("------------------------------")
-}
-
-const carbohydrateModify = (filteredDonuts) => {
-    console.log("Los donuts con más de 50 de azúcar tienen 42g de carbohidratos ahora");
-    filteredDonuts.map(el => {
-        if(parseInt(el.nutrition_facts.nutrition.carbohydrate.carbs_detail.type.sugars) > 50)
-        el.nutrition_facts.nutrition.carbohydrate.carbs_detail.amount = "42g"
-
-        console.log(el.name + ": cantidad de azúcar: " + el.nutrition_facts.nutrition.carbohydrate.carbs_detail.type.sugars + " cantidad de carbohidratos: " + el.nutrition_facts.nutrition.carbohydrate.carbs_detail.amount)
-    })
-    console.log("------------------------------")
-    console.log("------------------------------")
+const getDonuts = async() => {
+    return fetch ('https://gist.githubusercontent.com/Oskar-Dam/62e7175dc542af53a9d18cb292422425/raw/a6cce2b68ea13a77ec5ea7bdfb4df8f23f9ae95f/donuts.json')
+    .then(response => response.json())
 }
 
 
-const modifyAllCarbohydratesDailyValue = (filteredDonuts) => {
-    console.log("Modificamos toda la ingesta diaria de carbohidratos en los donuts al 53%")
-    filteredDonuts.map(el => {
-        el.nutrition_facts.nutrition.carbohydrate.daily_value = "53%";
-        console.log(el.name + ": ingesta diaria de carbohidratos: " + el.nutrition_facts.nutrition.carbohydrate.daily_value);
-    })
-    console.log("------------------------------")
-    console.log("------------------------------")
-}
 
-const fusionAddNitricine = (filteredDonuts) =>{
-    console.log("Añadimos nitacina a el donut con el nombre Fusion");
+const fetchDonuts = async() => {
+    try{
+        const result = await getDonuts();
+        const Donuts = JSON.parse(JSON.stringify(result.items.item))
+        const filteredDonuts = Object.values(Donuts)
 
-    const nitacine = {
-        type: "Nitacine",
-        percent: "2%"
+        console.log("-------------Conjuro 1--------------")
+        sugarDonut(filteredDonuts);
+        ironDonut(filteredDonuts);
+        proteineDonut(filteredDonuts);
+        fiberlessDonut(filteredDonuts);
+        console.log("-------------------------------------")
+        console.log("-------------Conjuro 2--------------")
+        donutsAndCalories(filteredDonuts);
+        donutsAndCarbohydrates(filteredDonuts);
+        donutCalorieAverage(filteredDonuts);
+        saturatedFatTotal(filteredDonuts);
+        vitamineAverage(filteredDonuts);
+        console.log("-------------------------------------")
+        console.log("-------------Conjuro 3--------------")
+        donutsButters(filteredDonuts); 
+        donutsToppings(filteredDonuts);
+        console.log("-------------------------------------")
+        console.log("-------------Conjuro 4--------------");
+        howManyDonutWeCanBuy(filteredDonuts, 4);
+        console.log("-------------------------------------")
+        console.log("-------------Conjuro 5--------------");
+        transFatModify(filteredDonuts);
+        carbohydrateModify(filteredDonuts);
+        fusionAddNitricine(filteredDonuts);
+        modifyAllCarbohydratesDailyValue(filteredDonuts);
+        addAlergen(filteredDonuts);
+        console.log("-------------------------------------")
     }
-
-    filteredDonuts.map(el => {
-        if(el.name.includes("Fusion"))
-            el.nutrition_facts.nutrition.vitamines.push(nitacine);
-    
-        console.log(el.name)
-        console.log(el.nutrition_facts.nutrition.vitamines)
-     })
-
-    console.log("------------------------------")
-    console.log("------------------------------")
+    catch(error){ 
+        console.log(error.message)
+    }
 }
 
-const addAlergen = (filteredDonuts) => {
+export default fetchDonuts
 
-    console.log("Añadimos gluten free como alergeno al donut con nombre relaxing")
-    filteredDonuts.map(el => {
-        if(el.name.includes("Relaxing")){
-            el.alergen = "Gluten Free";
 
-            console.log(el.name + ": alergenos: " + el.alergen);
-        }
-    })
-    console.log("------------------------------")
-    console.log("------------------------------")
-}
 
-export{
-    sugarDonut,
-    ironDonut,
-    proteineDonut,
-    fiberlessDonut,
-    donutsAndCalories,
-    donutsAndCarbohydrates,
-    donutCalorieAverage,
-    saturatedFatTotal,
-    vitamineAverage,
-    donutsButters,
-    donutsToppings,
-    howManyDonutWeCanBuy,
-    transFatModify,
-    carbohydrateModify,
-    modifyAllCarbohydratesDailyValue,
-    fusionAddNitricine,
-    addAlergen
 
-}
