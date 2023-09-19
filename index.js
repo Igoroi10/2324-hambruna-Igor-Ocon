@@ -1,5 +1,5 @@
 import fetch from 'cross-fetch';
-import { sugarDonut, ironDonut, proteineDonut, fiberlessDonut, donutsAndCalories, donutsAndCarbohydrates, donutCalorieAverage,saturatedFatTotal, vitamineAverage, donutsButters, donutsToppings, howManyDonutWeCanBuy, transFatModify, carbohydrateModify, modifyAllCarbohydratesDailyValue, fusionAddNitricine } from './service.js';
+import { sugarDonut, ironDonut, proteineDonut, fiberlessDonut, donutsAndCalories, donutsAndCarbohydrates, donutCalorieAverage,saturatedFatTotal, vitamineAverage, donutsButters, donutsToppings, howManyDonutWeCanBuy, transFatModify, carbohydrateModify, modifyAllCarbohydratesDailyValue, fusionAddNitricine, addAlergen } from './service.js';
 
 
 const getDonuts = async() => {
@@ -41,6 +41,7 @@ const fetchDonuts = async() => {
         carbohydrateModify(filteredDonuts);
         fusionAddNitricine(filteredDonuts);
         modifyAllCarbohydratesDailyValue(filteredDonuts);
+        addAlergen(filteredDonuts);
         console.log("-------------------------------------")
 
     }

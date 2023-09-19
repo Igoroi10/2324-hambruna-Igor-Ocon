@@ -201,12 +201,25 @@ const fusionAddNitricine = (filteredDonuts) =>{
     filteredDonuts.map(el => {
         if(el.name.includes("Fusion"))
             el.nutrition_facts.nutrition.vitamines.push(nitacine);
-
+    
         console.log(el.name)
         console.log(el.nutrition_facts.nutrition.vitamines)
-
      })
 
+    console.log("------------------------------")
+    console.log("------------------------------")
+}
+
+const addAlergen = (filteredDonuts) => {
+
+    console.log("Añadimos gluten free como alergeno al donut con nombre relaxing")
+    filteredDonuts.map(el => {
+        if(el.name.includes("Relaxing")){
+            el.alergen = "Gluten Free";
+
+            console.log(el.name + ": alergenos: " + el.alergen);
+        }
+    })
     console.log("------------------------------")
     console.log("------------------------------")
 }
@@ -228,5 +241,6 @@ export{
     carbohydrateModify,
     modifyAllCarbohydratesDailyValue,
     fusionAddNitricine,
+    addAlergen
 
 }
