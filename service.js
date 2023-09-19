@@ -190,6 +190,27 @@ const modifyAllCarbohydratesDailyValue = (filteredDonuts) => {
     console.log("------------------------------")
 }
 
+const fusionAddNitricine = (filteredDonuts) =>{
+    console.log("Añadimos nitacina a el donut con el nombre Fusion");
+
+    const nitacine = {
+        type: "Nitacine",
+        percent: "2%"
+    }
+
+    filteredDonuts.map(el => {
+        if(el.name.includes("Fusion"))
+            el.nutrition_facts.nutrition.vitamines.push(nitacine);
+
+        console.log(el.name)
+        console.log(el.nutrition_facts.nutrition.vitamines)
+
+     })
+
+    console.log("------------------------------")
+    console.log("------------------------------")
+}
+
 export{
     sugarDonut,
     ironDonut,
@@ -206,5 +227,6 @@ export{
     transFatModify,
     carbohydrateModify,
     modifyAllCarbohydratesDailyValue,
+    fusionAddNitricine,
 
 }
