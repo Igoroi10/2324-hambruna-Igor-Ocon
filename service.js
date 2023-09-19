@@ -16,7 +16,7 @@ const fetchDonuts = async() => {
     try{
         const result = await getDonuts();
         const Donuts = JSON.parse(JSON.stringify(result.items.item))
-        const filteredDonuts = Object.values(Donuts)
+        const filteredDonuts = Object.values(Donuts);
 
         console.log("-------------Conjuro 1--------------")
         sugarDonut(filteredDonuts);
@@ -36,7 +36,7 @@ const fetchDonuts = async() => {
         donutsToppings(filteredDonuts);
         console.log("-------------------------------------")
         console.log("-------------Conjuro 4--------------");
-        howManyDonutWeCanBuy(filteredDonuts, 4);
+        howManyDonutWeCanBuy(filteredDonuts, 4);                //Change number to change the amount of silver coins
         console.log("-------------------------------------")
         console.log("-------------Conjuro 5--------------");
         transFatModify(filteredDonuts);
